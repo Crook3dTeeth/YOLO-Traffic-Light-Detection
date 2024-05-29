@@ -5,10 +5,10 @@ import StateDetection.hugh_circle as state
 import threading
 import copy
 
-num = 0
 
-STATE_OUTPUT = True
-
+STATE_OUTPUT = False
+# Multithreading for state detection (BETA)
+MULTITHREAD = False
 
 def predict(chosen_model, img, classes=[], conf=0.5):
     """ Detects the traffic light using yolo and the model
@@ -20,7 +20,10 @@ def predict(chosen_model, img, classes=[], conf=0.5):
 
     return results
 
-
+# State buffer is an experiment for getting the state
+# if no traffic light state is found, not sure how usefull it 
+# would be for an actual self driving car but it makes the results
+# look better 
 class state_buffer:
     """ Acts as a circular buffer for states for storing states
     and getting the average state and confidence
@@ -78,7 +81,6 @@ class state_buffer:
         if self.index >= self.size:
             self.index = 0
 
-
 buffer = state_buffer()
 
 
@@ -86,8 +88,11 @@ path = 'testImages/out/'
 state_path = 'testImages/State/'
 
 
+num = 0
+
+
 def detect_state(img, box1, box2, box3, box4):
-    """DEPRECATED FUNCTION Gets the preprocssed frame using the outline coords of the traffic light
+    """Gets the preprocssed frame using the outline coords of the traffic light
     then runs state detection on the frame
     """
     global num, path, state_path
@@ -147,8 +152,7 @@ def predict_and_detect(chosen_model, img, classes=[], conf=0.5):
     thead_objects = ['None'] * 20
     index = 0
 
-    # Multithreading for state detection (BETA)
-    MULTITHREAD = False
+
 
     for result in results:
         for box in result.boxes:

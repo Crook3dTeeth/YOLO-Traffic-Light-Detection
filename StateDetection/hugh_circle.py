@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 """
-Uses hugh circle algorithm to find the state of a traffic light
+Uses hough circle algorithm to find the state of a traffic light
 Pre processes frames with HSV value filtering for more acurate results
 Assumes each frame input is a traffic light but hsv filtering usually removes
 any non traffic light results
@@ -16,6 +16,12 @@ hugh_index = 0
 img = 0
 output_index = 0
 
+
+# Whether or not hough circles is used
+# can run without but may not always be accurate
+USE_HOUGH = False
+
+# Debug outputs (Affects performance)
 DEBUG = False
 DEBUG_ERRORS = False   # Outputs any errors
 OUTPUT_CIRCLES = False # Displays the circle
@@ -45,7 +51,10 @@ def hugh(frame, preproc):
 
     img = preproc.copy()
 
-    circles = hough_circle(img)
+    if USE_HOUGH:
+        circles = hough_circle(img)
+    else:
+        circles = None
 
     if circles is not None:
 

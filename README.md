@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-The main funciton in detectTrafficLight.py contains basic config information such as which model is used, input source and target FPS.  
+The main funciton in detectTrafficLight.py contains basic config information such as which model is used, input source and target FPS.  Defaults to 23.pt model and runs using drive.mp4
 
 Windows:
 ```bash
