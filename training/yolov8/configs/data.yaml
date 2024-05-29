@@ -1,0 +1,13 @@
+train: ../V1/train/images
+val: ../V1/valid/images
+test: ../V1/test/images
+
+nc: 1
+names: ['traffic light']
+
+roboflow:
+  workspace: traffic-light-xpzmv
+  project: traffic-light-3uxjk
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/traffic-light-xpzmv/traffic-light-3uxjk/dataset/2
