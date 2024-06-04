@@ -9,6 +9,10 @@ import copy
 STATE_OUTPUT = False
 # Multithreading for state detection (BETA)
 MULTITHREAD = False
+# Input video 
+INPUT_VIDEO = 'drive.mp4'
+# Yolo model
+YOLO_MODEL = 'models/23.pt'
 
 def predict(chosen_model, img, classes=[], conf=0.5):
     """ Detects the traffic light using yolo and the model
@@ -207,9 +211,9 @@ def main():
         frame_delay = 1 / PROCESS_FPS
 
     # Input source/video
-    video = cv2.VideoCapture('drive.mp4')
+    video = cv2.VideoCapture(INPUT_VIDEO)
     # Yolo model
-    model = YOLO('models/23.pt')
+    model = YOLO(YOLO_MODEL)
 
     img_counter = 0
 
@@ -249,4 +253,3 @@ def main():
 
 
 main()
-#valid()

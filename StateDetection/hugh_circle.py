@@ -35,6 +35,7 @@ def preProcess(frame):
 
     new_frame = cv2.resize(frame.copy(), (0, 0), fx = 8, fy = 8)
 
+    # Lower and upper hsv values 
     lower = np.array([0, 60, 60])
     upper = np.array([97, 255, 255])
 
@@ -51,6 +52,7 @@ def hugh(frame, preproc):
 
     img = preproc.copy()
 
+    # Use hough circles as another step to veirfy that a light circle was found
     if USE_HOUGH:
         circles = hough_circle(img)
     else:
@@ -80,6 +82,7 @@ def hugh(frame, preproc):
 
 
     av = get_average(img)
+    # Checks if an average value was actually found
     if av[0] != av[0]:
         return frame, "No Light Detected"
     detected_state = color_from_ranges(av)
@@ -173,7 +176,7 @@ def get_state(circle_coords, frame):
     global DEBUG
 
     try:
-        # uf 
+        
         if circle_coords is not None:
             
             # Gets the largest circle if there are multiple
