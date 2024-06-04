@@ -35,4 +35,4 @@ python3 detectTrafficLight.py
 
 ## Training
 
-Annotating a dataset was done using https://app.roboflow.com/ as it can automatically split the data set into training validation and testing folders aswell as creating the yaml file for the dataset.  After a dataset is annotated using configure the [training file](https://github.com/Crook3dTeeth/YOLO-Traffic-Light-Detection/blob/main/training/yolov8/main.py) with the .yaml file and how many epochs, img size etc. More info on yolov8 and training can be found [here] (https://github.com/ultralytics/ultralytics)
+Annotating a dataset was done using [roboflow](https://app.roboflow.com/) as it can automatically split the dataset into training, validation and testing folders aswell as creating the yaml file for the dataset.  After a dataset is annotated using configure the [training file](https://github.com/Crook3dTeeth/YOLO-Traffic-Light-Detection/blob/main/training/yolov8/main.py) with the .yaml file and how many epochs, img size etc. More info on yolov8 and training can be found [here](https://github.com/ultralytics/ultralytics)
