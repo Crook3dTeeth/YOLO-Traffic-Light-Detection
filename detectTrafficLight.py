@@ -12,15 +12,15 @@ MULTITHREAD = False
 # Input video 
 INPUT_VIDEO = 'drive.mp4'
 # Yolo model
-YOLO_MODEL = 'models/23.pt'
+YOLO_MODEL = 'models/57.pt'
 
 def predict(chosen_model, img, classes=[], conf=0.5):
     """ Detects the traffic light using yolo and the model
     """
     if classes:
-        results = chosen_model.predict(img, classes=classes, conf=conf,  verbose = True)
+        results = chosen_model.predict(img, classes=classes, conf=conf,  verbose = False)
     else:
-        results = chosen_model.predict(img, conf=conf,  verbose = True)
+        results = chosen_model.predict(img, conf=conf,  verbose = False)
 
     return results
 
@@ -182,7 +182,7 @@ def predict_and_detect(chosen_model, img, classes=[], conf=0.5):
                 state_detected = detect_state(img, box1, box2, box3, box4)
                 # Add state to box
                 cv2.putText(img, f"{state_detected}", (int(box.xyxy[0][0]), int(box.xyxy[0][1]) - 10), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 1)
-            index += 0
+            index += 1
 
     if MULTITHREAD: 
     # Waits for each state detection thread and writes the output to the screen
@@ -195,7 +195,7 @@ def predict_and_detect(chosen_model, img, classes=[], conf=0.5):
                 cv2.rectangle(img, (box1, box2),
                             (box3, box4), (255, 0, 0), 1)
 
-                cv2.putText(img, f"{thead_objects[index]}", (int(box.xyxy[0][0]), int(box.xyxy[0][1]) - 10), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 1)
+                cv2.putText(img, f"{thead_objects[index][1]}", (int(box.xyxy[0][0]), int(box.xyxy[0][1]) - 10), cv2.FONT_HERSHEY_PLAIN, 1, (255, 0, 0), 1)
                 index += 1
     
     return img, results
